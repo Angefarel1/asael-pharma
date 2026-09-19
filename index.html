@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +33,7 @@
       <li><a href="#engagements">Engagements</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="tel:+2250757687579" class="btn-call">
+    <a href="tel:+2250757687579" class="btn-call call-only-mobile">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/></svg>
       Appeler
     </a>
@@ -59,17 +61,117 @@
         <span class="tag">24h/24 · 7j/7</span>
       </div>
       <div class="contact-actions">
-        <a href="https://wa.me/2250757687579" class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="https://wa.me/2250757687579" class="btn btn-primary wa-link" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.4-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.3z"/></svg>
           Écrire sur WhatsApp
         </a>
-        <a href="tel:+2250757687579" class="btn btn-secondary">
+        <a href="tel:+2250757687579" class="btn btn-secondary call-only-mobile">
           <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/></svg>
           Appeler directement
         </a>
       </div>
     </div>
     <p class="hero-note">Un seul numéro, joignable à toute heure — par appel ou par message.</p>
+  </div>
+</section>
+
+<section class="box-scene" id="boxScene">
+  <div class="wrap box-scene-wrap">
+    <svg class="box-scene-svg" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="boxFrontGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FCFAF6"></stop>
+          <stop offset="100%" stop-color="#E4DCC9"></stop>
+        </linearGradient>
+        <linearGradient id="boxTopGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"></stop>
+          <stop offset="100%" stop-color="#EFE9DA"></stop>
+        </linearGradient>
+        <linearGradient id="lidGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FEFDFA"></stop>
+          <stop offset="100%" stop-color="#E1D9C4"></stop>
+        </linearGradient>
+        <linearGradient id="blisterGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#F4F4F2"></stop>
+          <stop offset="45%" stop-color="#C7C8CD"></stop>
+          <stop offset="100%" stop-color="#E6E6EA"></stop>
+        </linearGradient>
+        <radialGradient id="pillGrad" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stop-color="#EAF6F0"></stop>
+          <stop offset="55%" stop-color="#79B8A5"></stop>
+          <stop offset="100%" stop-color="#1F5C52"></stop>
+        </radialGradient>
+        <linearGradient id="leafletGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"></stop>
+          <stop offset="100%" stop-color="#EEEDE7"></stop>
+        </linearGradient>
+        <linearGradient id="capsuleClearGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"></stop>
+          <stop offset="100%" stop-color="#DEDEDE"></stop>
+        </linearGradient>
+        <linearGradient id="capsuleColorGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3D8C7C"></stop>
+          <stop offset="100%" stop-color="#164940"></stop>
+        </linearGradient>
+        <clipPath id="boxFrontClip">
+          <rect x="180" y="230" width="280" height="130" rx="16"></rect>
+        </clipPath>
+        <filter id="softShadow" x="-60%" y="-60%" width="220%" height="220%">
+          <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#14140D" flood-opacity="0.22"></feDropShadow>
+        </filter>
+        <filter id="groundBlur" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="12"></feGaussianBlur>
+        </filter>
+      </defs>
+
+      <ellipse class="box-shadow" cx="320" cy="412" rx="165" ry="15" fill="#14140D" opacity="0.16" filter="url(#groundBlur)"></ellipse>
+
+      <g class="box-leaflet" filter="url(#softShadow)">
+        <rect x="150" y="255" width="90" height="120" rx="6" fill="url(#leafletGrad)" stroke="#D9D6CC" stroke-width="1"></rect>
+        <path d="M226 255 L240 269 L226 269 Z" fill="#DAD7CD"></path>
+        <line x1="168" y1="284" x2="222" y2="284" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="168" y1="302" x2="222" y2="302" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="168" y1="320" x2="205" y2="320" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
+      </g>
+
+      <g class="box-blister" filter="url(#softShadow)">
+        <rect x="400" y="250" width="110" height="130" rx="10" fill="url(#blisterGrad)" stroke="#B7B7BC" stroke-width="1"></rect>
+        <circle cx="425" cy="278" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="455" cy="278" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="485" cy="278" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="425" cy="308" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="455" cy="308" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="485" cy="308" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="425" cy="338" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="455" cy="338" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="485" cy="338" r="9" fill="url(#pillGrad)"></circle>
+        <line x1="410" y1="293" x2="500" y2="293" stroke="#FFFFFF" stroke-width="1" opacity="0.6"></line>
+        <line x1="410" y1="323" x2="500" y2="323" stroke="#FFFFFF" stroke-width="1" opacity="0.6"></line>
+      </g>
+
+      <g class="box-capsule" filter="url(#softShadow)">
+        <rect x="285" y="150" width="72" height="30" rx="15" fill="url(#capsuleClearGrad)" stroke="#CFCFCF" stroke-width="0.8" transform="rotate(-18 321 165)"></rect>
+        <rect x="285" y="150" width="36" height="30" rx="15" fill="url(#capsuleColorGrad)" transform="rotate(-18 321 165)"></rect>
+        <ellipse cx="300" cy="157" rx="7" ry="3" fill="#FFFFFF" opacity="0.55" transform="rotate(-18 321 165)"></ellipse>
+      </g>
+
+      <g class="box-body">
+        <rect x="180" y="222" width="280" height="14" rx="6" fill="url(#boxTopGrad)"></rect>
+        <rect x="180" y="230" width="280" height="130" rx="16" fill="url(#boxFrontGrad)" stroke="#D8D0BC" stroke-width="1"></rect>
+        <rect x="184" y="234" width="272" height="10" rx="5" fill="#FFFFFF" opacity="0.45"></rect>
+        <path d="M205 235 L232 235 L214 355 L187 355 Z" fill="#FFFFFF" opacity="0.10" clip-path="url(#boxFrontClip)"></path>
+        <rect x="205" y="278" width="70" height="8" rx="4" fill="#1F5C52" opacity="0.18"></rect>
+        <rect x="205" y="292" width="110" height="6" rx="3" fill="#8A8474" opacity="0.4"></rect>
+      </g>
+
+      <g class="box-lid" filter="url(#softShadow)">
+        <rect x="174" y="204" width="292" height="42" rx="13" fill="url(#lidGrad)" stroke="#D8D0BC" stroke-width="1"></rect>
+        <rect x="178" y="207" width="284" height="8" rx="4" fill="#FFFFFF" opacity="0.5"></rect>
+        <path class="box-lid-icon" d="M320 216v16M312 224h16" stroke="#1F5C52" stroke-width="2.4" stroke-linecap="round"></path>
+      </g>
+    </svg>
+
+    <p class="box-scene-caption">Chaque médicament est vérifié et préparé avec soin, avant de vous être remis.</p>
   </div>
 </section>
 
@@ -216,11 +318,11 @@
     <h2><span class="mask"><span class="mask-inner">Une question, un besoin ?</span></span></h2>
     <p class="reveal-fade">Écrivez ou appelez directement, une réponse humaine vous attend.</p>
     <div class="contact-actions reveal-children" style="justify-content:center;">
-      <a href="https://wa.me/2250757687579" class="btn btn-primary" target="_blank" rel="noopener">
+      <a href="https://wa.me/2250757687579" class="btn btn-primary wa-link" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.4-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.3z"/></svg>
         WhatsApp
       </a>
-      <a href="tel:+2250757687579" class="btn btn-secondary">
+      <a href="tel:+2250757687579" class="btn btn-secondary call-only-mobile">
         <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/></svg>
         07 57 68 75 79
       </a>
@@ -229,6 +331,7 @@
         Écrire un email
       </a>
     </div>
+    <p class="cta-trust reveal-fade">Paiement par Wave ou Orange Money · Livraison gratuite · Toutes les communes, sauf Attécoubé · Service en français et en anglais</p>
   </div>
 </section>
 

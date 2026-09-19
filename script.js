@@ -23,15 +23,81 @@
         loader.classList.add('hide');
         html.classList.add('ready');
         html.classList.remove('loading');
-        setTimeout(function(){ if (loader) loader.remove(); }, hideDuration);
+        setTimeout(function(){
+          if (loader) loader.remove();
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        }, hideDuration);
       }, loaderDuration);
     }
+  })();
+
+  // ===== BOX-OPENING SCENE (GSAP ScrollTrigger) =====
+  (function(){
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    var lid = document.querySelector('.box-lid');
+    var leaflet = document.querySelector('.box-leaflet');
+    var blister = document.querySelector('.box-blister');
+    var capsule = document.querySelector('.box-capsule');
+    var caption = document.querySelector('.box-scene-caption');
+    if (!lid || !leaflet || !blister || !capsule || !caption) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isDesktop = window.matchMedia('(min-width: 861px)').matches;
+
+    if (reduceMotion){
+      gsap.set(lid, { y:-90, rotate:-7, opacity:.15 });
+      gsap.set([leaflet, blister, capsule], { opacity:1, scale:1, x:0, y:0 });
+      gsap.set(caption, { opacity:1, y:0 });
+      return;
+    }
+
+    if (isDesktop){
+      var tl = gsap.timeline({
+        scrollTrigger:{
+          trigger:'#boxScene',
+          start:'top top',
+          end:'+=1300',
+          scrub:0.8,
+          pin:true
+        }
+      });
+      tl.to(lid,     { y:-90, rotate:-7, opacity:.15, duration:1, ease:'power2.out' }, 0)
+        .to(blister, { x:-150, y:-10, rotate:-6, opacity:1, scale:1, duration:1, ease:'power2.out' }, 0.15)
+        .to(leaflet, { x:150, y:10, rotate:6, opacity:1, scale:1, duration:1, ease:'power2.out' }, 0.15)
+        .to(capsule, { y:-80, opacity:1, scale:1, rotate:-4, duration:1, ease:'power2.out' }, 0.3)
+        .to(caption, { opacity:1, y:0, duration:.6 }, 0.65);
+    } else {
+      ScrollTrigger.create({
+        trigger:'#boxScene',
+        start:'top 65%',
+        once:true,
+        onEnter:function(){
+          var tl = gsap.timeline();
+          tl.to(lid,     { y:-50, rotate:-6, opacity:.18, duration:.6, ease:'power2.out' })
+            .to(blister, { x:-70, y:-4, rotate:-5, opacity:1, scale:1, duration:.5, ease:'power2.out' }, '-=0.3')
+            .to(leaflet, { x:70, y:6, rotate:5, opacity:1, scale:1, duration:.5, ease:'power2.out' }, '<')
+            .to(capsule, { y:-40, opacity:1, scale:1, rotate:-3, duration:.5, ease:'power2.out' }, '-=0.3')
+            .to(caption, { opacity:1, y:0, duration:.5 }, '-=0.2');
+        }
+      });
+    }
+
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
   })();
 
   var nav = document.getElementById('siteNav');
   window.addEventListener('scroll', function(){
     nav.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
+
+  // ===== WHATSAPP PRE-FILLED MESSAGE (editable, not auto-sent) =====
+  var WA_MESSAGE = "Bonjour, j'ai visité le site d'Asael Pharma et j'aimerais avoir davantage d'informations. Merci d'avance pour votre retour.";
+  document.querySelectorAll('.wa-link').forEach(function(link){
+    var base = link.getAttribute('href').split('?')[0];
+    link.setAttribute('href', base + '?text=' + encodeURIComponent(WA_MESSAGE));
+  });
 
   // ===== THEME TOGGLE BUTTON =====
   var themeBtn = document.getElementById('themeToggle');
