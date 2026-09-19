@@ -140,13 +140,86 @@
     });
   }
 
-  var revealEls = document.querySelectorAll('.reveal, .reveal-fade, .reveal-children, .mask');
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
+  // ===== DYNAMIC SCROLL REVEAL (GSAP) =====
+  // "Clock card" glow still needs its .in class for the CSS-driven glow fade
+  (function(){
+    var clockCard = document.querySelector('.clock-card');
+    if (clockCard && 'IntersectionObserver' in window){
+      var glowIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){ entry.target.classList.add('in'); glowIO.unobserve(entry.target); }
+        });
+      }, { threshold: 0.3 });
+      glowIO.observe(clockCard);
+    }
+  })();
+
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    var isDesktop = window.matchMedia('(min-width: 861px)').matches;
+
+    // Section headings: mask-line reveal with a snappier, more dramatic swish
+    gsap.utils.toArray('.mask-inner').forEach(function(el){
+      gsap.fromTo(el,
+        { yPercent: 115, rotate: isDesktop ? 3 : 0 },
+        {
+          yPercent: 0, rotate: 0,
+          duration: isDesktop ? 1.1 : 0.65,
+          ease: 'power4.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        }
+      );
     });
-  }, { threshold: 0.16 });
-  revealEls.forEach(function(el){ io.observe(el); });
+
+    // Paragraphs under headings
+    gsap.utils.toArray('.reveal-fade').forEach(function(el){
+      gsap.fromTo(el,
+        { autoAlpha: 0, y: isDesktop ? 30 : 16 },
+        {
+          autoAlpha: 1, y: 0,
+          duration: isDesktop ? 0.9 : 0.55,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Generic section blocks — arrive with real presence, not a gentle fade
+    gsap.utils.toArray('.reveal').forEach(function(el){
+      gsap.fromTo(el,
+        { autoAlpha: 0, y: isDesktop ? 90 : 40, scale: isDesktop ? 0.9 : 0.95, filter: 'blur(6px)' },
+        {
+          autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)',
+          duration: isDesktop ? 1.1 : 0.65,
+          ease: 'back.out(1.5)',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Grids — each card flies in from alternating sides with a little rotation and pop
+    gsap.utils.toArray('.reveal-children').forEach(function(container){
+      var children = container.children;
+      if (!children.length) return;
+      gsap.fromTo(children,
+        {
+          autoAlpha: 0,
+          x: function(i){ return isDesktop ? (i % 2 === 0 ? -70 : 70) : 0; },
+          y: isDesktop ? 36 : 26,
+          scale: 0.82,
+          rotate: function(i){ return isDesktop ? (i % 2 === 0 ? -6 : 6) : 0; }
+        },
+        {
+          autoAlpha: 1, x: 0, y: 0, scale: 1, rotate: 0,
+          duration: isDesktop ? 0.95 : 0.55,
+          ease: 'back.out(1.7)',
+          stagger: isDesktop ? 0.14 : 0.08,
+          scrollTrigger: { trigger: container, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+  })();
