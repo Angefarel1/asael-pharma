@@ -77,7 +77,7 @@
 
 <section class="box-scene" id="boxScene">
   <div class="wrap box-scene-wrap">
-    <svg class="box-scene-svg" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg class="box-scene-svg" viewBox="-40 0 720 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <linearGradient id="boxFrontGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#FCFAF6"></stop>
@@ -113,6 +113,14 @@
           <stop offset="0%" stop-color="#3D8C7C"></stop>
           <stop offset="100%" stop-color="#164940"></stop>
         </linearGradient>
+        <linearGradient id="capsuleGoldGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#E7B65A"></stop>
+          <stop offset="100%" stop-color="#B8842E"></stop>
+        </linearGradient>
+        <linearGradient id="tabletGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"></stop>
+          <stop offset="100%" stop-color="#E6E3D8"></stop>
+        </linearGradient>
         <clipPath id="boxFrontClip">
           <rect x="180" y="230" width="280" height="130" rx="16"></rect>
         </clipPath>
@@ -126,33 +134,67 @@
 
       <ellipse class="box-shadow" cx="320" cy="412" rx="165" ry="15" fill="#14140D" opacity="0.16" filter="url(#groundBlur)"></ellipse>
 
+      <!-- All contents start packed at the box's center, then burst outward -->
       <g class="box-leaflet" filter="url(#softShadow)">
-        <rect x="150" y="255" width="90" height="120" rx="6" fill="url(#leafletGrad)" stroke="#D9D6CC" stroke-width="1"></rect>
-        <path d="M226 255 L240 269 L226 269 Z" fill="#DAD7CD"></path>
-        <line x1="168" y1="284" x2="222" y2="284" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
-        <line x1="168" y1="302" x2="222" y2="302" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
-        <line x1="168" y1="320" x2="205" y2="320" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
+        <rect x="275" y="235" width="90" height="120" rx="6" fill="url(#leafletGrad)" stroke="#D9D6CC" stroke-width="1"></rect>
+        <path d="M351 235 L365 249 L351 249 Z" fill="#DAD7CD"></path>
+        <line x1="293" y1="264" x2="347" y2="264" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="293" y1="282" x2="347" y2="282" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="293" y1="300" x2="330" y2="300" stroke="#B9B6AC" stroke-width="2" stroke-linecap="round"></line>
       </g>
 
       <g class="box-blister" filter="url(#softShadow)">
-        <rect x="400" y="250" width="110" height="130" rx="10" fill="url(#blisterGrad)" stroke="#B7B7BC" stroke-width="1"></rect>
-        <circle cx="425" cy="278" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="455" cy="278" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="485" cy="278" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="425" cy="308" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="455" cy="308" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="485" cy="308" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="425" cy="338" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="455" cy="338" r="9" fill="url(#pillGrad)"></circle>
-        <circle cx="485" cy="338" r="9" fill="url(#pillGrad)"></circle>
-        <line x1="410" y1="293" x2="500" y2="293" stroke="#FFFFFF" stroke-width="1" opacity="0.6"></line>
-        <line x1="410" y1="323" x2="500" y2="323" stroke="#FFFFFF" stroke-width="1" opacity="0.6"></line>
+        <rect x="265" y="230" width="110" height="130" rx="10" fill="url(#blisterGrad)" stroke="#B7B7BC" stroke-width="1"></rect>
+        <circle cx="290" cy="258" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="320" cy="258" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="350" cy="258" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="290" cy="288" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="320" cy="288" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="350" cy="288" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="290" cy="318" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="320" cy="318" r="9" fill="url(#pillGrad)"></circle>
+        <circle cx="350" cy="318" r="9" fill="url(#pillGrad)"></circle>
+        <line x1="275" y1="273" x2="365" y2="273" stroke="#FFFFFF" stroke-width="1" opacity="0.6"></line>
+        <line x1="275" y1="303" x2="365" y2="303" stroke="#FFFFFF" stroke-width="1" opacity="0.6"></line>
       </g>
 
-      <g class="box-capsule" filter="url(#softShadow)">
-        <rect x="285" y="150" width="72" height="30" rx="15" fill="url(#capsuleClearGrad)" stroke="#CFCFCF" stroke-width="0.8" transform="rotate(-18 321 165)"></rect>
-        <rect x="285" y="150" width="36" height="30" rx="15" fill="url(#capsuleColorGrad)" transform="rotate(-18 321 165)"></rect>
-        <ellipse cx="300" cy="157" rx="7" ry="3" fill="#FFFFFF" opacity="0.55" transform="rotate(-18 321 165)"></ellipse>
+      <g class="box-cap-1" filter="url(#softShadow)">
+        <rect x="284" y="280" width="72" height="30" rx="15" fill="url(#capsuleClearGrad)" stroke="#CFCFCF" stroke-width="0.8"></rect>
+        <rect x="284" y="280" width="36" height="30" rx="15" fill="url(#capsuleColorGrad)"></rect>
+        <ellipse cx="299" cy="287" rx="7" ry="3" fill="#FFFFFF" opacity="0.55"></ellipse>
+      </g>
+
+      <g class="box-cap-2" filter="url(#softShadow)">
+        <rect x="284" y="280" width="72" height="30" rx="15" fill="url(#capsuleClearGrad)" stroke="#CFCFCF" stroke-width="0.8"></rect>
+        <rect x="284" y="280" width="36" height="30" rx="15" fill="url(#capsuleColorGrad)"></rect>
+        <ellipse cx="299" cy="287" rx="7" ry="3" fill="#FFFFFF" opacity="0.55"></ellipse>
+      </g>
+
+      <g class="box-cap-3" filter="url(#softShadow)">
+        <rect x="292" y="283" width="56" height="24" rx="12" fill="url(#capsuleClearGrad)" stroke="#CFCFCF" stroke-width="0.7"></rect>
+        <rect x="292" y="283" width="28" height="24" rx="12" fill="url(#capsuleGoldGrad)"></rect>
+        <ellipse cx="304" cy="289" rx="5.5" ry="2.4" fill="#FFFFFF" opacity="0.55"></ellipse>
+      </g>
+
+      <g class="box-tab-1" filter="url(#softShadow)">
+        <circle cx="320" cy="295" r="18" fill="url(#tabletGrad)" stroke="#D8D5CC" stroke-width="1"></circle>
+        <line x1="308" y1="295" x2="332" y2="295" stroke="#C9C6BC" stroke-width="1.4"></line>
+        <ellipse cx="314" cy="287" rx="6" ry="3" fill="#FFFFFF" opacity="0.5"></ellipse>
+      </g>
+      <g class="box-tab-2" filter="url(#softShadow)">
+        <circle cx="320" cy="295" r="17" fill="url(#tabletGrad)" stroke="#D8D5CC" stroke-width="1"></circle>
+        <line x1="309" y1="295" x2="331" y2="295" stroke="#C9C6BC" stroke-width="1.4"></line>
+        <ellipse cx="314" cy="288" rx="5.5" ry="2.7" fill="#FFFFFF" opacity="0.5"></ellipse>
+      </g>
+      <g class="box-tab-3" filter="url(#softShadow)">
+        <circle cx="320" cy="295" r="16" fill="url(#tabletGrad)" stroke="#D8D5CC" stroke-width="1"></circle>
+        <line x1="310" y1="295" x2="330" y2="295" stroke="#C9C6BC" stroke-width="1.4"></line>
+        <ellipse cx="314" cy="288" rx="5" ry="2.5" fill="#FFFFFF" opacity="0.5"></ellipse>
+      </g>
+      <g class="box-tab-4" filter="url(#softShadow)">
+        <circle cx="320" cy="295" r="19" fill="url(#tabletGrad)" stroke="#D8D5CC" stroke-width="1"></circle>
+        <line x1="307" y1="295" x2="333" y2="295" stroke="#C9C6BC" stroke-width="1.4"></line>
+        <ellipse cx="313" cy="287" rx="6.2" ry="3" fill="#FFFFFF" opacity="0.5"></ellipse>
       </g>
 
       <g class="box-body">

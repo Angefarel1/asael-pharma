@@ -37,18 +37,29 @@
     gsap.registerPlugin(ScrollTrigger);
 
     var lid = document.querySelector('.box-lid');
-    var leaflet = document.querySelector('.box-leaflet');
-    var blister = document.querySelector('.box-blister');
-    var capsule = document.querySelector('.box-capsule');
     var caption = document.querySelector('.box-scene-caption');
-    if (!lid || !leaflet || !blister || !capsule || !caption) return;
+    var items = [
+      { el: document.querySelector('.box-cap-1'),  x:-220, y:-185, rotate:-22, scale:1.05 },
+      { el: document.querySelector('.box-cap-2'),  x: 220, y:-175, rotate: 18, scale:0.95 },
+      { el: document.querySelector('.box-cap-3'),  x:   0, y:-240, rotate: -8, scale:0.9  },
+      { el: document.querySelector('.box-leaflet'),x:-290, y:   5, rotate: -6, scale:1    },
+      { el: document.querySelector('.box-blister'),x: 290, y:   5, rotate:  6, scale:1    },
+      { el: document.querySelector('.box-tab-1'),  x:-250, y: 105, rotate: -12,scale:1    },
+      { el: document.querySelector('.box-tab-2'),  x: 260, y: 105, rotate:  14,scale:0.95 },
+      { el: document.querySelector('.box-tab-3'),  x: -90, y: 145, rotate:  8, scale:0.9  },
+      { el: document.querySelector('.box-tab-4'),  x: 100, y: 145, rotate: -10,scale:1.05 }
+    ].filter(function(it){ return it.el; });
+
+    if (!lid || !caption || !items.length) return;
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var isDesktop = window.matchMedia('(min-width: 861px)').matches;
 
     if (reduceMotion){
       gsap.set(lid, { y:-90, rotate:-7, opacity:.15 });
-      gsap.set([leaflet, blister, capsule], { opacity:1, scale:1, x:0, y:0 });
+      items.forEach(function(it){
+        gsap.set(it.el, { opacity:1, scale:it.scale, x:it.x, y:it.y, rotate:it.rotate });
+      });
       gsap.set(caption, { opacity:1, y:0 });
       return;
     }
@@ -58,16 +69,19 @@
         scrollTrigger:{
           trigger:'#boxScene',
           start:'top top',
-          end:'+=1300',
+          end:'+=1700',
           scrub:0.8,
           pin:true
         }
       });
-      tl.to(lid,     { y:-90, rotate:-7, opacity:.15, duration:1, ease:'power2.out' }, 0)
-        .to(blister, { x:-150, y:-10, rotate:-6, opacity:1, scale:1, duration:1, ease:'power2.out' }, 0.15)
-        .to(leaflet, { x:150, y:10, rotate:6, opacity:1, scale:1, duration:1, ease:'power2.out' }, 0.15)
-        .to(capsule, { y:-80, opacity:1, scale:1, rotate:-4, duration:1, ease:'power2.out' }, 0.3)
-        .to(caption, { opacity:1, y:0, duration:.6 }, 0.65);
+      tl.to(lid, { y:-90, rotate:-7, opacity:.15, duration:1, ease:'power2.out' }, 0);
+      items.forEach(function(it, i){
+        tl.to(it.el, {
+          x: it.x, y: it.y, rotate: it.rotate, scale: it.scale, opacity: 1,
+          duration: 1, ease: 'power2.out'
+        }, 0.1 + i * 0.06);
+      });
+      tl.to(caption, { opacity:1, y:0, duration:.6 }, 0.95);
     } else {
       ScrollTrigger.create({
         trigger:'#boxScene',
@@ -75,11 +89,14 @@
         once:true,
         onEnter:function(){
           var tl = gsap.timeline();
-          tl.to(lid,     { y:-50, rotate:-6, opacity:.18, duration:.6, ease:'power2.out' })
-            .to(blister, { x:-70, y:-4, rotate:-5, opacity:1, scale:1, duration:.5, ease:'power2.out' }, '-=0.3')
-            .to(leaflet, { x:70, y:6, rotate:5, opacity:1, scale:1, duration:.5, ease:'power2.out' }, '<')
-            .to(capsule, { y:-40, opacity:1, scale:1, rotate:-3, duration:.5, ease:'power2.out' }, '-=0.3')
-            .to(caption, { opacity:1, y:0, duration:.5 }, '-=0.2');
+          tl.to(lid, { y:-50, rotate:-6, opacity:.18, duration:.6, ease:'power2.out' });
+          items.forEach(function(it, i){
+            tl.to(it.el, {
+              x: it.x * 0.55, y: it.y * 0.55, rotate: it.rotate, scale: it.scale * 0.9, opacity: 1,
+              duration: .5, ease: 'power2.out'
+            }, i === 0 ? '-=0.3' : '-=0.42');
+          });
+          tl.to(caption, { opacity:1, y:0, duration:.5 }, '-=0.15');
         }
       });
     }
@@ -168,7 +185,7 @@
           yPercent: 0, rotate: 0,
           duration: isDesktop ? 1.1 : 0.65,
           ease: 'power4.out',
-          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none play reverse' }
         }
       );
     });
@@ -181,7 +198,7 @@
           autoAlpha: 1, y: 0,
           duration: isDesktop ? 0.9 : 0.55,
           ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+          scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none play reverse' }
         }
       );
     });
@@ -194,7 +211,7 @@
           autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)',
           duration: isDesktop ? 1.1 : 0.65,
           ease: 'back.out(1.5)',
-          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none play reverse' }
         }
       );
     });
@@ -216,7 +233,7 @@
           duration: isDesktop ? 0.95 : 0.55,
           ease: 'back.out(1.7)',
           stagger: isDesktop ? 0.14 : 0.08,
-          scrollTrigger: { trigger: container, start: 'top 85%', toggleActions: 'play none none none' }
+          scrollTrigger: { trigger: container, start: 'top 85%', toggleActions: 'play none play reverse' }
         }
       );
     });

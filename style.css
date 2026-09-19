@@ -265,17 +265,16 @@
     display:flex; flex-direction:column; align-items:center; gap:36px;
     width:100%; padding-top:60px; padding-bottom:60px;
   }
-  .box-scene-svg{ width:100%; max-width:520px; overflow:visible; }
+  .box-scene-svg{ width:100%; max-width:660px; overflow:visible; }
 
   .box-lid{ transform-box:fill-box; transform-origin:50% 100%; }
 
-  .box-leaflet, .box-blister, .box-capsule{
+  .box-leaflet, .box-blister,
+  .box-cap-1, .box-cap-2, .box-cap-3,
+  .box-tab-1, .box-tab-2, .box-tab-3, .box-tab-4{
     transform-box:fill-box; transform-origin:50% 50%;
-    opacity:0;
+    opacity:0; transform:scale(.4);
   }
-  .box-leaflet{ transform:translate(18px,0) scale(.88); }
-  .box-blister{ transform:translate(-18px,0) scale(.88); }
-  .box-capsule{ transform:translate(0,14px) scale(.88); }
 
   .box-scene-caption{
     opacity:0; transform:translateY(12px);
