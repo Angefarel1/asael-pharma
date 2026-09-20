@@ -194,18 +194,35 @@
 
   /* ---------- HERO ---------- */
   .hero{ padding:158px 0 80px; text-align:center; position:relative; overflow:hidden; }
+  :root{ --wm-opacity: 0.13; }
+  :root[data-theme="dark"]{ --wm-opacity: 0.08; }
   .hero-watermark{
     position:absolute;
     top:50%; left:50%;
     width:min(760px, 130vw);
     height:auto;
-    transform:translate(-50%,-50%);
     color:var(--teal);
-    opacity:0.05;
     pointer-events:none;
     z-index:0;
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.82) rotate(-10deg);
   }
-  :root[data-theme="dark"] .hero-watermark{ opacity:0.07; }
+  html.ready.device-desktop .hero-watermark{
+    animation: watermarkIn 1.3s cubic-bezier(.19,1,.22,1) forwards .3s,
+               watermarkFloat 16s ease-in-out 1.6s infinite;
+  }
+  html.ready.device-mobile .hero-watermark{
+    animation: watermarkIn 0.9s ease forwards .15s,
+               watermarkFloat 16s ease-in-out 1.05s infinite;
+  }
+  @keyframes watermarkIn{
+    0%{ opacity:0; transform:translate(-50%,-50%) scale(.82) rotate(-10deg); }
+    100%{ opacity:var(--wm-opacity); transform:translate(-50%,-50%) scale(1) rotate(0deg); }
+  }
+  @keyframes watermarkFloat{
+    0%, 100%{ transform:translate(-50%,-50%) scale(1) rotate(0deg); }
+    50%{ transform:translate(-50%,-50%) scale(1.04) rotate(2deg); }
+  }
   .hero .wrap{ position:relative; z-index:1; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
@@ -279,6 +296,15 @@
     width:100%; padding-top:60px; padding-bottom:60px;
   }
   .box-scene-svg{ width:100%; max-width:660px; overflow:visible; }
+
+  .box-letter{
+    font-family:'Fraunces', serif;
+    font-size:46px;
+    font-weight:500;
+    fill:var(--ink);
+    text-anchor:middle;
+    user-select:none;
+  }
 
   .box-lid{ transform-box:fill-box; transform-origin:50% 100%; }
 
@@ -613,5 +639,10 @@
     .line-inner{ transform:none !important; }
     .eyebrow, .hero .sub, .contact-block, .hero-note, .nav-inner > *{
       opacity:1 !important; transform:none !important; animation:none !important;
+    }
+    .hero-watermark{
+      opacity:var(--wm-opacity) !important;
+      transform:translate(-50%,-50%) !important;
+      animation:none !important;
     }
   }

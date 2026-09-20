@@ -50,6 +50,14 @@
       { el: document.querySelector('.box-tab-4'),  x: 100, y: 145, rotate: -10,scale:1.05 }
     ].filter(function(it){ return it.el; });
 
+    // Each letter is drawn (in the SVG) at its final position in the word.
+    // dx/dy below is how far back toward the box center it must start from.
+    var letterEls = gsap.utils.toArray('.box-letter');
+    var letters = letterEls.map(function(el, i){
+      var dx = [125, 99, 76, 52, 33, -1, -27, -52, -73, -99, -128][i] || 0;
+      return { el: el, dx: dx, dy: -205, rotate: gsap.utils.random(-16, 16) };
+    });
+
     if (!lid || !caption || !items.length) return;
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -60,6 +68,7 @@
       items.forEach(function(it){
         gsap.set(it.el, { opacity:1, scale:it.scale, x:it.x, y:it.y, rotate:it.rotate });
       });
+      letters.forEach(function(l){ gsap.set(l.el, { opacity:1, x:0, y:0, scale:1, rotate:0 }); });
       gsap.set(caption, { opacity:1, y:0 });
       return;
     }
@@ -69,7 +78,7 @@
         scrollTrigger:{
           trigger:'#boxScene',
           start:'top top',
-          end:'+=1700',
+          end:'+=2100',
           scrub:0.8,
           pin:true
         }
@@ -79,9 +88,17 @@
         tl.to(it.el, {
           x: it.x, y: it.y, rotate: it.rotate, scale: it.scale, opacity: 1,
           duration: 1, ease: 'power2.out'
-        }, 0.1 + i * 0.06);
+        }, 0.08 + i * 0.05);
       });
-      tl.to(caption, { opacity:1, y:0, duration:.6 }, 0.95);
+      // The brand name assembles once the medicines have burst outward
+      letters.forEach(function(l, i){
+        gsap.set(l.el, { x: l.dx, y: l.dy, scale: .3, opacity: 0, rotate: l.rotate });
+        tl.to(l.el, {
+          x: 0, y: 0, scale: 1, opacity: 1, rotate: 0,
+          duration: 0.7, ease: 'back.out(1.7)'
+        }, 0.58 + i * 0.032);
+      });
+      tl.to(caption, { opacity:1, y:0, duration:.5 }, 1.0);
     } else {
       ScrollTrigger.create({
         trigger:'#boxScene',
@@ -96,7 +113,14 @@
               duration: .5, ease: 'power2.out'
             }, i === 0 ? '-=0.3' : '-=0.42');
           });
-          tl.to(caption, { opacity:1, y:0, duration:.5 }, '-=0.15');
+          letters.forEach(function(l, i){
+            gsap.set(l.el, { x: l.dx * 0.6, y: l.dy * 0.6, scale: .4, opacity: 0, rotate: l.rotate });
+            tl.to(l.el, {
+              x: 0, y: 0, scale: 1, opacity: 1, rotate: 0,
+              duration: 0.45, ease: 'back.out(1.6)'
+            }, i === 0 ? '-=0.1' : '-=0.34');
+          });
+          tl.to(caption, { opacity:1, y:0, duration:.5 }, '-=0.1');
         }
       });
     }
