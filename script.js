@@ -18,7 +18,7 @@
     } else {
       html.classList.add('loading');
       var loaderDuration = isDesktop ? 1350 : 780;
-      var hideDuration = isDesktop ? 900 : 550;
+      var hideDuration = isDesktop ? 1300 : 550;
       setTimeout(function(){
         loader.classList.add('hide');
         html.classList.add('ready');
@@ -191,7 +191,8 @@
   var WA_MESSAGE = "Bonjour, j'ai visité le site d'Asael Pharma et j'aimerais avoir davantage d'informations. Merci d'avance pour votre retour.";
   document.querySelectorAll('.wa-link').forEach(function(link){
     var base = link.getAttribute('href').split('?')[0];
-    link.setAttribute('href', base + '?text=' + encodeURIComponent(WA_MESSAGE));
+    var text = link.getAttribute('data-wa-text') || WA_MESSAGE;
+    link.setAttribute('href', base + '?text=' + encodeURIComponent(text));
   });
 
   // ===== THEME TOGGLE BUTTON =====

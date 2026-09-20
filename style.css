@@ -40,20 +40,61 @@
   img,svg{max-width:100%; display:block;}
   .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
 
-  /* ============ LOADER ============ */
+  /* ============ LOADER — pharmacy glass door ============ */
   .loader{
     position:fixed; inset:0; z-index:9999;
     pointer-events:none;
-  }
-  .loader-panel{
-    position:absolute; top:0; bottom:0; width:50%;
     background:var(--panel-bg);
   }
-  .loader-panel-left{ left:0; }
-  .loader-panel-right{ right:0; }
+
+  .loader-frame-top, .loader-frame-bottom{
+    position:absolute; left:0; right:0; height:12px;
+    background:linear-gradient(180deg, #3A392F, #1A1A14);
+    z-index:3;
+  }
+  .loader-frame-top{ top:0; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+  .loader-frame-bottom{ bottom:0; box-shadow:0 -2px 6px rgba(0,0,0,0.3); }
+
+  .loader-panel{
+    position:absolute; top:12px; bottom:12px; width:50%;
+    background:
+      linear-gradient(115deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.015) 40%, rgba(255,255,255,0.05) 100%),
+      var(--panel-bg);
+    overflow:hidden;
+  }
+  .loader-panel-left{ left:0; border-right:1px solid rgba(250,248,244,0.14); }
+  .loader-panel-right{ right:0; border-left:1px solid rgba(250,248,244,0.14); }
+
+  .loader-glass-shine{
+    position:absolute; top:-20%; width:36%; height:160%;
+    background:linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.10) 45%, transparent 70%);
+    transform:rotate(8deg);
+  }
+  .loader-panel-left .loader-glass-shine{ left:18%; }
+  .loader-panel-right .loader-glass-shine{ right:30%; }
+
+  .loader-handle{
+    position:absolute; top:50%; width:6px; height:104px;
+    transform:translateY(-50%);
+    background:linear-gradient(180deg, #C9C4B4, #8B8676 50%, #C9C4B4);
+    border-radius:4px;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.2), 2px 2px 6px rgba(0,0,0,0.35);
+    transition:transform .35s ease;
+  }
+  .loader-panel-left .loader-handle{ right:26px; }
+  .loader-panel-right .loader-handle{ left:26px; }
+
   .loader-center{
-    position:absolute; inset:0; z-index:2;
+    position:absolute; inset:0; z-index:4;
     display:flex; align-items:center; justify-content:center; flex-direction:column;
+    pointer-events:none;
+  }
+  .loader-icon{
+    width:56px; height:56px;
+    color:var(--panel-text);
+    opacity:0;
+    transform:translateY(8px) scale(.85);
+    margin-bottom:14px;
   }
   .loader-logo{
     font-family:'Fraunces',serif;
@@ -69,20 +110,30 @@
     margin-top:16px;
   }
 
-  html.device-desktop .loader-logo{ animation:logoIn .7s ease forwards .15s; }
-  html.device-desktop .loader-line{ animation:lineDraw .5s ease forwards .6s; }
-  html.device-mobile .loader-logo{ animation:logoIn .45s ease forwards .05s; }
-  html.device-mobile .loader-line{ animation:lineDraw .35s ease forwards .32s; }
+  html.device-desktop .loader-icon{ animation:logoIn .7s ease forwards .05s; }
+  html.device-desktop .loader-logo{ animation:logoIn .7s ease forwards .25s; }
+  html.device-desktop .loader-line{ animation:lineDraw .5s ease forwards .7s; }
+  html.device-mobile .loader-icon{ animation:logoIn .45s ease forwards 0s; }
+  html.device-mobile .loader-logo{ animation:logoIn .45s ease forwards .12s; }
+  html.device-mobile .loader-line{ animation:lineDraw .35s ease forwards .38s; }
 
-  @keyframes logoIn{ to{ opacity:1; transform:translateY(0); } }
+  @keyframes logoIn{ to{ opacity:1; transform:translateY(0) scale(1); } }
   @keyframes lineDraw{ to{ width:56px; } }
 
-  /* Desktop: cinematic curtain split */
+  /* Desktop: the handles ease inward slightly (unlocking), then the doors slide open */
+  html.device-desktop .loader.hide .loader-panel-left .loader-handle{ transform:translateY(-50%) translateX(6px); }
+  html.device-desktop .loader.hide .loader-panel-right .loader-handle{ transform:translateY(-50%) translateX(-6px); }
   html.device-desktop .loader.hide .loader-panel-left{
-    animation:slideLeftOut .9s cubic-bezier(.65,0,.35,1) forwards;
+    animation:slideLeftOut .95s cubic-bezier(.65,0,.35,1) forwards .12s;
   }
   html.device-desktop .loader.hide .loader-panel-right{
-    animation:slideRightOut .9s cubic-bezier(.65,0,.35,1) forwards;
+    animation:slideRightOut .95s cubic-bezier(.65,0,.35,1) forwards .12s;
+  }
+  html.device-desktop .loader.hide .loader-frame-top{
+    animation:frameFade .4s ease forwards .9s;
+  }
+  html.device-desktop .loader.hide .loader-frame-bottom{
+    animation:frameFade .4s ease forwards .9s;
   }
   html.device-desktop .loader.hide .loader-center{
     animation:fadeOutCenter .35s ease forwards;
@@ -90,11 +141,11 @@
   @keyframes slideLeftOut{ to{ transform:translateX(-100%); } }
   @keyframes slideRightOut{ to{ transform:translateX(100%); } }
   @keyframes fadeOutCenter{ to{ opacity:0; } }
+  @keyframes frameFade{ to{ opacity:0; } }
 
-  /* Mobile: quick clean fade, no curtain */
+  /* Mobile: quick clean fade, no door swing */
   @media (max-width:860px){
-    .loader-panel{ display:none; }
-    .loader{ background:var(--panel-bg); }
+    .loader-panel, .loader-frame-top, .loader-frame-bottom{ display:none; }
   }
   html.device-mobile .loader.hide{
     animation:fadeOutMobile .55s ease forwards;
@@ -350,6 +401,52 @@
   .service p{ color:var(--grey); font-size:14.5px; line-height:1.6; margin:0; }
   @media (max-width:780px){
     .services-grid{ grid-template-columns:1fr; }
+  }
+
+  /* PRODUCTS */
+  .products-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:26px;
+    margin-bottom:28px;
+  }
+  .product-card{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:18px;
+    overflow:hidden;
+  }
+  .product-photo{
+    width:100%; aspect-ratio:16/10; overflow:hidden;
+    background:var(--cream-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .product-photo img{
+    width:100%; height:100%; object-fit:contain; padding:18px;
+  }
+  .product-body{ padding:26px 28px 30px; }
+  .product-tag{
+    display:inline-block; font-size:12px; font-weight:500;
+    color:var(--teal); background:var(--teal-soft);
+    padding:5px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .product-body h3{
+    font-family:'Fraunces',serif; font-weight:500; font-size:21px;
+    margin:0 0 6px; letter-spacing:-0.01em;
+  }
+  .product-brand{ color:var(--grey); font-size:15px; font-weight:400; }
+  .product-meta{ color:var(--grey-light); font-size:13px; margin:0 0 14px; }
+  .product-desc{ color:var(--ink-soft); font-size:14.5px; line-height:1.65; margin:0 0 22px; }
+  .product-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:500; color:var(--teal);
+    text-decoration:none; border-bottom:1px solid transparent;
+    transition:border-color .25s ease, gap .25s ease;
+  }
+  .product-link svg{ width:14px; height:14px; }
+  @media (hover:hover){ .product-link:hover{ border-color:var(--teal); gap:11px; } }
+  .products-note{
+    text-align:center; font-size:12.5px; color:var(--grey-light);
+    max-width:520px; margin:0 auto;
+  }
+  @media (max-width:780px){
+    .products-grid{ grid-template-columns:1fr; }
   }
 
   /* PROCESS */
