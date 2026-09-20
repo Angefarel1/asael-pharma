@@ -109,6 +109,60 @@
     nav.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
 
+  // ===== FLOATING WHATSAPP BUTTON =====
+  var waFloat = document.querySelector('.wa-float');
+  if (waFloat){
+    window.addEventListener('scroll', function(){
+      waFloat.classList.toggle('show', window.scrollY > 500);
+    }, { passive: true });
+  }
+
+  // ===== CUSTOM CURSOR (desktop only, smooth trailing ring) =====
+  (function(){
+    var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!canHover || reduceMotion) return;
+
+    var dot = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    if (!dot || !ring) return;
+
+    var dotX, dotY, ringX, ringY;
+    if (typeof gsap !== 'undefined'){
+      gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+      dotX = gsap.quickTo(dot, 'x', { duration:0.12, ease:'power3.out' });
+      dotY = gsap.quickTo(dot, 'y', { duration:0.12, ease:'power3.out' });
+      ringX = gsap.quickTo(ring, 'x', { duration:0.45, ease:'power3.out' });
+      ringY = gsap.quickTo(ring, 'y', { duration:0.45, ease:'power3.out' });
+    }
+
+    document.addEventListener('mousemove', function(e){
+      dot.classList.add('visible');
+      ring.classList.add('visible');
+      if (dotX){
+        dotX(e.clientX); dotY(e.clientY);
+        ringX(e.clientX); ringY(e.clientY);
+      } else {
+        var t = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+        dot.style.transform = t;
+        ring.style.transform = t;
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function(){
+      dot.classList.remove('visible');
+      ring.classList.remove('visible');
+    });
+
+    var hoverTargets = 'a, button, .tilt, input, textarea, .theme-toggle';
+    document.addEventListener('mouseover', function(e){
+      if (e.target.closest(hoverTargets)) ring.classList.add('hovering');
+    });
+    document.addEventListener('mouseout', function(e){
+      if (e.target.closest(hoverTargets)) ring.classList.remove('hovering');
+    });
+  })();
+
   // ===== WHATSAPP PRE-FILLED MESSAGE (editable, not auto-sent) =====
   var WA_MESSAGE = "Bonjour, j'ai visité le site d'Asael Pharma et j'aimerais avoir davantage d'informations. Merci d'avance pour votre retour.";
   document.querySelectorAll('.wa-link').forEach(function(link){
