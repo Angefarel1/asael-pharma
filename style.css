@@ -193,7 +193,20 @@
   @media (hover:none){ .theme-toggle:active{ transform:scale(.92); } }
 
   /* ---------- HERO ---------- */
-  .hero{ padding:158px 0 80px; text-align:center; }
+  .hero{ padding:158px 0 80px; text-align:center; position:relative; overflow:hidden; }
+  .hero-watermark{
+    position:absolute;
+    top:50%; left:50%;
+    width:min(760px, 130vw);
+    height:auto;
+    transform:translate(-50%,-50%);
+    color:var(--teal);
+    opacity:0.05;
+    pointer-events:none;
+    z-index:0;
+  }
+  :root[data-theme="dark"] .hero-watermark{ opacity:0.07; }
+  .hero .wrap{ position:relative; z-index:1; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-size:13.5px; color:var(--teal);
