@@ -156,8 +156,8 @@
       gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
       dotX = gsap.quickTo(dot, 'x', { duration:0.12, ease:'power3.out' });
       dotY = gsap.quickTo(dot, 'y', { duration:0.12, ease:'power3.out' });
-      ringX = gsap.quickTo(ring, 'x', { duration:0.45, ease:'power3.out' });
-      ringY = gsap.quickTo(ring, 'y', { duration:0.45, ease:'power3.out' });
+      ringX = gsap.quickTo(ring, 'x', { duration:0.32, ease:'power3.out' });
+      ringY = gsap.quickTo(ring, 'y', { duration:0.32, ease:'power3.out' });
     }
 
     document.addEventListener('mousemove', function(e){
@@ -262,7 +262,7 @@
         { yPercent: 115, rotate: isDesktop ? 3 : 0 },
         {
           yPercent: 0, rotate: 0,
-          duration: isDesktop ? 1.1 : 0.65,
+          duration: isDesktop ? 0.9 : 0.55,
           ease: 'power4.out',
           scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none play reverse' }
         }
@@ -275,7 +275,7 @@
         { autoAlpha: 0, y: isDesktop ? 30 : 16 },
         {
           autoAlpha: 1, y: 0,
-          duration: isDesktop ? 0.9 : 0.55,
+          duration: isDesktop ? 0.75 : 0.48,
           ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none play reverse' }
         }
@@ -288,8 +288,8 @@
         { autoAlpha: 0, y: isDesktop ? 90 : 40, scale: isDesktop ? 0.9 : 0.95, filter: 'blur(6px)' },
         {
           autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)',
-          duration: isDesktop ? 1.1 : 0.65,
-          ease: 'back.out(1.5)',
+          duration: isDesktop ? 0.9 : 0.55,
+          ease: 'back.out(1.6)',
           scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none play reverse' }
         }
       );
@@ -309,8 +309,8 @@
         },
         {
           autoAlpha: 1, x: 0, y: 0, scale: 1, rotate: 0,
-          duration: isDesktop ? 0.95 : 0.55,
-          ease: 'back.out(1.7)',
+          duration: isDesktop ? 0.8 : 0.48,
+          ease: 'back.out(1.8)',
           stagger: isDesktop ? 0.14 : 0.08,
           scrollTrigger: { trigger: container, start: 'top 85%', toggleActions: 'play none play reverse' }
         }
