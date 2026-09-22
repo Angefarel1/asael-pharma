@@ -133,6 +133,58 @@
     nav.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
 
+  // ===== COVERAGE MAP — communes light up one by one on scroll =====
+  (function(){
+    var chips = document.querySelectorAll('.commune-chip:not(.chip-excluded)');
+    if (!chips.length) return;
+    var mapEl = document.querySelector('.coverage-map');
+    if (!mapEl) return;
+
+    function lightUp(){
+      chips.forEach(function(chip, i){
+        setTimeout(function(){ chip.classList.add('lit'); }, i * 110);
+      });
+    }
+
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){ lightUp(); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.35 });
+      io.observe(mapEl);
+    } else {
+      lightUp();
+    }
+  })();
+
+  // ===== REAL-TIME DAY/NIGHT ICON (Africa/Abidjan) =====
+  (function(){
+    var icon = document.getElementById('dayNightIcon');
+    if (!icon) return;
+    var sun = '<circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>';
+    var moon = '<path d="M20 14.5A8.5 8.5 0 0110.2 4.7 8.5 8.5 0 1020 14.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>';
+    var hour;
+    try {
+      hour = parseInt(new Intl.DateTimeFormat('en-GB', { hour:'numeric', hour12:false, timeZone:'Africa/Abidjan' }).format(new Date()), 10);
+    } catch(e) {
+      hour = new Date().getUTCHours(); // Abidjan = UTC+0 year-round
+    }
+    icon.innerHTML = (hour >= 6 && hour < 18) ? sun : moon;
+  })();
+
+  // ===== FAQ ACCORDION =====
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var btn = item.querySelector('.faq-question');
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(openItem){
+        if (openItem !== item) openItem.classList.remove('open');
+      });
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+
   // ===== FLOATING WHATSAPP BUTTON =====
   var waFloat = document.querySelector('.wa-float');
   if (waFloat){
@@ -184,6 +236,32 @@
     });
     document.addEventListener('mouseout', function(e){
       if (e.target.closest(hoverTargets)) ring.classList.remove('hovering');
+    });
+  })();
+
+  // ===== MAGNETIC BUTTONS (desktop only) =====
+  (function(){
+    var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!canHover || reduceMotion || typeof gsap === 'undefined') return;
+
+    var targets = document.querySelectorAll('.btn, .btn-call, .theme-toggle');
+    targets.forEach(function(el){
+      var moveX = gsap.quickTo(el, 'x', { duration:.4, ease:'power3.out' });
+      var moveY = gsap.quickTo(el, 'y', { duration:.4, ease:'power3.out' });
+      var strength = 0.4;
+
+      el.addEventListener('mousemove', function(e){
+        var rect = el.getBoundingClientRect();
+        var relX = e.clientX - (rect.left + rect.width / 2);
+        var relY = e.clientY - (rect.top + rect.height / 2);
+        moveX(relX * strength);
+        moveY(relY * strength);
+      });
+      el.addEventListener('mouseleave', function(){
+        moveX(0);
+        moveY(0);
+      });
     });
   })();
 
