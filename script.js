@@ -133,28 +133,40 @@
     nav.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
 
-  // ===== COVERAGE MAP — communes light up one by one on scroll =====
+  // ===== COVERAGE MAP — pins drop in one by one, then light up =====
   (function(){
-    var chips = document.querySelectorAll('.commune-chip:not(.chip-excluded)');
-    if (!chips.length) return;
+    var pins = document.querySelectorAll('.commune-pin');
+    if (!pins.length) return;
     var mapEl = document.querySelector('.coverage-map');
     if (!mapEl) return;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function lightUp(){
-      chips.forEach(function(chip, i){
-        setTimeout(function(){ chip.classList.add('lit'); }, i * 110);
+    function drop(){
+      pins.forEach(function(pin, i){
+        var delay = reduceMotion ? 0 : i * 130;
+        setTimeout(function(){
+          if (typeof gsap !== 'undefined' && !reduceMotion){
+            gsap.fromTo(pin,
+              { y: -22, opacity: 0, scale: .5 },
+              { y: 0, opacity: 1, scale: 1, duration: .6, ease: 'bounce.out' }
+            );
+          }
+          if (!pin.classList.contains('excluded')){
+            setTimeout(function(){ pin.classList.add('lit'); }, reduceMotion ? 0 : 320);
+          }
+        }, delay);
       });
     }
 
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          if (entry.isIntersecting){ lightUp(); io.unobserve(entry.target); }
+          if (entry.isIntersecting){ drop(); io.unobserve(entry.target); }
         });
-      }, { threshold: 0.35 });
+      }, { threshold: 0.3 });
       io.observe(mapEl);
     } else {
-      lightUp();
+      drop();
     }
   })();
 
@@ -396,4 +408,29 @@
     });
 
     window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+  })();
+
+  // ===== LEGAL PAGES: scrollspy for the table of contents =====
+  (function(){
+    var tocLinks = document.querySelectorAll('.legal-toc a');
+    if (!tocLinks.length) return;
+    var sections = [];
+    tocLinks.forEach(function(link){
+      var id = link.getAttribute('href').replace('#', '');
+      var section = document.getElementById(id);
+      if (section) sections.push({ link: link, section: section });
+    });
+    if (!sections.length) return;
+
+    function updateActive(){
+      var scrollPos = window.scrollY + 140;
+      var current = sections[0];
+      sections.forEach(function(item){
+        if (item.section.offsetTop <= scrollPos) current = item;
+      });
+      sections.forEach(function(item){ item.link.classList.remove('active'); });
+      current.link.classList.add('active');
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
   })();

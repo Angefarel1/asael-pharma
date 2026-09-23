@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditions d'utilisation — Asael Pharma</title>
+<meta name="description" content="Conditions d'utilisation d'Asael Pharma : fonctionnement du service, commande, paiement, livraison et responsabilites, conformement au droit ivoirien.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<a href="https://wa.me/2250757687579" class="wa-float wa-link" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <span class="wa-float-pulse"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.4-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<div class="loader" id="loader">
+  <div class="loader-frame-top"></div>
+  <div class="loader-frame-bottom"></div>
+  <div class="loader-panel loader-panel-left">
+    <span class="loader-glass-shine"></span>
+    <span class="loader-handle"></span>
+  </div>
+  <div class="loader-panel loader-panel-right">
+    <span class="loader-glass-shine"></span>
+    <span class="loader-handle"></span>
+  </div>
+  <div class="loader-center">
+    <svg class="loader-icon" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M160 20h80a12 12 0 0112 12v96h96a12 12 0 0112 12v80a12 12 0 01-12 12h-96v96a12 12 0 01-12 12h-80a12 12 0 01-12-12v-96H52a12 12 0 01-12-12v-80a12 12 0 0112-12h96V32a12 12 0 0112-12z" fill="none" stroke="currentColor" stroke-width="11"></path>
+      <path d="M300 130c10 55-25 100-80 112-40 9-78-4-96-30 22-40 60-58 96-58 8-24 30-24 80-24z" fill="currentColor"></path>
+      <path d="M124 212c18-34 55-50 96-52" fill="none" stroke="#14140D" stroke-width="8" stroke-linecap="round"></path>
+    </svg>
+    <span class="loader-logo">Asael Pharma</span>
+    <span class="loader-line"></span>
+  </div>
+  <div class="loader-flash"></div>
+</div>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Asael Pharma</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+    </ul>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 0110.2 4.7 8.5 8.5 0 1020 14.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="legal-page">
+  <svg class="legal-watermark" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M160 20h80a12 12 0 0112 12v96h96a12 12 0 0112 12v80a12 12 0 01-12 12h-96v96a12 12 0 01-12 12h-80a12 12 0 01-12-12v-96H52a12 12 0 01-12-12v-80a12 12 0 0112-12h96V32a12 12 0 0112-12z" fill="none" stroke="currentColor" stroke-width="10"></path>
+  <path d="M300 130c10 55-25 100-80 112-40 9-78-4-96-30 22-40 60-58 96-58 8-24 30-24 80-24z" fill="currentColor"></path>
+  <path d="M124 212c18-34 55-50 96-52" fill="none" stroke="var(--cream)" stroke-width="7" stroke-linecap="round"></path>
+</svg>
+
+  <section class="legal-hero">
+    <div class="wrap">
+      <a href="index.html" class="legal-back">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Retour a l'accueil
+      </a>
+      <div class="legal-updated"><span class="dot"></span>Derniere mise a jour : Septembre 2026</div>
+      <h1><span class="mask"><span class="mask-inner">Conditions d'utilisation</span></span></h1>
+      <p class="legal-intro reveal-fade">Les règles qui encadrent votre relation avec Asael Pharma, du premier contact jusqu'à la remise de votre médicament.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="legal-layout">
+      <nav class="legal-toc">
+          <a href="#objet">Objet</a>
+          <a href="#presentation">Présentation du service</a>
+          <a href="#conseil-medical">Absence de conseil médical</a>
+          <a href="#acces">Conditions d'accès</a>
+          <a href="#processus">Processus de commande</a>
+          <a href="#prix-paiement">Prix et paiement</a>
+          <a href="#livraison">Livraison</a>
+          <a href="#annulation">Annulation et remboursement</a>
+          <a href="#responsabilite">Responsabilité</a>
+          <a href="#propriete">Propriété intellectuelle</a>
+          <a href="#utilisation">Utilisation du site</a>
+          <a href="#liens-externes">Liens externes</a>
+          <a href="#droit-applicable">Droit applicable</a>
+          <a href="#modification-cgu">Modification des conditions</a>
+          <a href="#contact-cgu">Nous contacter</a>
+      </nav>
+      <article class="legal-content">
+
+<section class="legal-section reveal" id="objet">
+  <h2><span class="mask"><span class="mask-inner">Objet</span></span></h2>
+  <p>Les présentes conditions d'utilisation ont pour objet de définir les modalités et conditions dans lesquelles Asael Pharma met à votre disposition ses services de facilitation d'accès à des médicaments spécialisés, ainsi que les droits et obligations respectifs entre Asael Pharma et toute personne qui sollicite ses services, ci-après désignée « le client » ou « vous ».</p>
+  <p>Le fait de contacter Asael Pharma par téléphone, par WhatsApp ou par tout autre moyen mis à disposition sur ce site, dans le but de solliciter un médicament, emporte votre acceptation pleine et entière des présentes conditions. Si vous n'acceptez pas tout ou partie de ces conditions, nous vous invitons à ne pas poursuivre votre démarche auprès d'Asael Pharma.</p>
+</section>
+
+<section class="legal-section reveal" id="presentation">
+  <h2><span class="mask"><span class="mask-inner">Présentation du service</span></span></h2>
+  <p>Asael Pharma est un service basé à Abidjan, Côte d'Ivoire, spécialisé dans la facilitation d'accès à des médicaments d'oncologie importés depuis l'Inde. Contrairement à une pharmacie physique, Asael Pharma ne dispose pas de comptoir de vente ouvert au public ni de plateforme de commande en ligne automatisée : chaque demande fait l'objet d'un échange direct et personnalisé, par téléphone ou par WhatsApp, entre le client et Asael Pharma.</p>
+  <p>Ce site internet a pour seule fonction de présenter l'activité d'Asael Pharma, ses engagements, ainsi que des informations générales sur certains médicaments disponibles. Il ne constitue en aucun cas une plateforme de vente en ligne, et aucune commande ne peut être finalisée directement sur ce site. Toute commande résulte d'un échange préalable, mené en dehors de ce site, par téléphone ou par WhatsApp.</p>
+</section>
+
+<section class="legal-section reveal" id="conseil-medical">
+  <h2><span class="mask"><span class="mask-inner">Absence de conseil médical</span></span></h2>
+  <p>Les informations présentées sur ce site, ainsi que les échanges menés avec Asael Pharma, sont fournis à titre d'information générale et ne constituent en aucun cas un avis médical, un diagnostic ou une prescription. Asael Pharma facilite l'accès à des médicaments ; elle ne se substitue pas à un médecin, un oncologue ou tout autre professionnel de santé qualifié.</p>
+  <p>Il vous appartient de vous assurer, avant toute prise de médicament, que celui-ci est adapté à votre situation, idéalement en lien avec un professionnel de santé assurant le suivi de votre traitement. Asael Pharma vous encourage vivement à maintenir un tel suivi médical tout au long de votre parcours de soin, y compris lorsque les médicaments sont obtenus par son intermédiaire.</p>
+</section>
+
+<section class="legal-section reveal" id="acces">
+  <h2><span class="mask"><span class="mask-inner">Conditions d'accès au service</span></span></h2>
+  <p>Les services d'Asael Pharma s'adressent à des personnes majeures, disposant de la capacité juridique de contracter au sens du droit ivoirien, ou à des personnes agissant pour le compte d'un proche dont elles ont la charge ou l'accord. En sollicitant Asael Pharma, vous garantissez que les informations que vous communiquez sont exactes et sincères.</p>
+  <p>Asael Pharma se réserve le droit de refuser de donner suite à une demande si elle a un doute raisonnable sur son sérieux, sur l'identité de la personne qui la formule, ou sur la licéité de la finalité poursuivie.</p>
+</section>
+
+<section class="legal-section reveal" id="processus">
+  <h2><span class="mask"><span class="mask-inner">Processus de commande</span></span></h2>
+  <p>Le processus de commande auprès d'Asael Pharma se déroule en trois étapes. Vous prenez d'abord contact par appel téléphonique ou par WhatsApp, à tout moment, pour exposer votre besoin. Un échange personnalisé est ensuite mené afin de préciser le médicament recherché, sa disponibilité, son prix, ainsi que les modalités de règlement et de livraison. Enfin, une fois le paiement confirmé, le médicament est remis en main propre ou livré à l'adresse convenue.</p>
+  <p>Aucune ordonnance n'est exigée par Asael Pharma pour engager cette démarche. Cette souplesse ne dispense toutefois pas le client de s'assurer, de son côté, que le médicament demandé correspond bien à son besoin réel, idéalement en lien avec un professionnel de santé.</p>
+</section>
+
+<section class="legal-section reveal" id="prix-paiement">
+  <h2><span class="mask"><span class="mask-inner">Prix et paiement</span></span></h2>
+  <p>Les prix des médicaments proposés par Asael Pharma sont communiqués au cas par cas, lors de l'échange préalable à la commande, et sont exprimés en francs CFA. Ils peuvent varier selon la disponibilité du médicament, les conditions d'importation, et l'évolution des tarifs pratiqués par les fournisseurs.</p>
+  <p>Le règlement s'effectue exclusivement par Wave ou par Orange Money, avant l'expédition ou la remise du médicament. Ce fonctionnement en paiement préalable permet à Asael Pharma de garantir votre commande, y compris lorsqu'un médicament doit être spécialement commandé pour vous auprès de son fournisseur. Aucun paiement en espèces à la livraison n'est proposé à ce jour.</p>
+  <p>Asael Pharma ne demande jamais la communication de codes secrets, de mots de passe ou d'identifiants complets de compte Wave ou Orange Money. Seule une preuve de transaction peut vous être demandée pour confirmer un paiement.</p>
+</section>
+
+<section class="legal-section reveal" id="livraison">
+  <h2><span class="mask"><span class="mask-inner">Livraison</span></span></h2>
+  <p>Asael Pharma assure la livraison de ses médicaments dans l'ensemble des communes d'Abidjan, à l'exception d'Attécoubé, qui n'est pas desservie à ce jour. La livraison est gratuite, sans frais supplémentaire facturé au client.</p>
+  <p>Le délai de livraison varie selon la commune de destination, l'heure à laquelle la commande est passée, et la disponibilité immédiate ou non du médicament demandé. Asael Pharma s'efforce d'assurer une livraison dans les meilleurs délais, sans toutefois pouvoir garantir un horaire fixe, notamment en cas de circonstances indépendantes de sa volonté telles que des conditions de circulation difficiles.</p>
+  <p>Il vous appartient de vous assurer d'être joignable et disponible à l'adresse convenue au moment de la livraison. En cas d'absence répétée ou d'impossibilité de vous joindre, Asael Pharma se réserve le droit de convenir avec vous d'une nouvelle organisation, sans que sa responsabilité ne puisse être engagée pour le délai supplémentaire qui en résulterait.</p>
+</section>
+
+<section class="legal-section reveal" id="annulation">
+  <h2><span class="mask"><span class="mask-inner">Annulation et remboursement</span></span></h2>
+  <p>Toute demande d'annulation doit être formulée le plus rapidement possible, par téléphone ou par WhatsApp, idéalement avant que la commande n'ait été passée auprès du fournisseur d'Asael Pharma. Dans ce cas, un remboursement intégral du montant réglé peut être envisagé.</p>
+  <p>Lorsque le médicament a déjà été spécialement commandé auprès du fournisseur pour répondre à votre demande, un remboursement peut ne plus être possible, dans la mesure où Asael Pharma a elle-même engagé les frais correspondants. Chaque situation est cependant examinée au cas par cas, avec la volonté de trouver une solution raisonnable et de bonne foi avec le client concerné.</p>
+  <p>En cas de médicament livré non conforme à la demande initiale, ou endommagé lors du transport, contactez Asael Pharma sans délai afin qu'une solution appropriée puisse être trouvée.</p>
+</section>
+
+<section class="legal-section reveal" id="responsabilite">
+  <h2><span class="mask"><span class="mask-inner">Responsabilité</span></span></h2>
+  <p>Asael Pharma s'engage à mettre en œuvre tous les moyens raisonnables pour assurer un service sérieux, discret et fiable. Sa responsabilité ne saurait toutefois être engagée en cas de retard de livraison lié à des circonstances indépendantes de sa volonté, telles que des conditions de circulation, des difficultés d'approvisionnement auprès de ses fournisseurs, ou tout événement de force majeure.</p>
+  <p>Asael Pharma ne saurait davantage être tenue responsable d'un usage inapproprié d'un médicament par le client, notamment en dehors de toute indication médicale appropriée ou de tout suivi par un professionnel de santé. La responsabilité relative au bon usage d'un médicament et à son adéquation avec l'état de santé du client relève de ce dernier et, le cas échéant, du professionnel de santé qui l'accompagne.</p>
+  <p>En tout état de cause, la responsabilité d'Asael Pharma, si elle venait à être engagée, serait limitée au montant effectivement réglé par le client pour la commande concernée.</p>
+</section>
+
+<section class="legal-section reveal" id="propriete">
+  <h2><span class="mask"><span class="mask-inner">Propriété intellectuelle</span></span></h2>
+  <p>L'ensemble des éléments constituant ce site — textes, mise en page, logo, illustrations, animations et code — est la propriété d'Asael Pharma ou de ses prestataires, et est protégé par les dispositions relatives à la propriété intellectuelle en vigueur en Côte d'Ivoire.</p>
+  <p>Toute reproduction, représentation, modification ou exploitation, totale ou partielle, de ces éléments, sans autorisation préalable d'Asael Pharma, est interdite, sauf usage strictement personnel et non commercial.</p>
+</section>
+
+<section class="legal-section reveal" id="utilisation">
+  <h2><span class="mask"><span class="mask-inner">Utilisation du site</span></span></h2>
+  <p>Vous vous engagez à utiliser ce site de manière loyale et conforme à sa destination. Sont notamment interdits : toute tentative d'accès non autorisé aux systèmes d'Asael Pharma, toute utilisation frauduleuse des coordonnées de contact affichées sur ce site, ainsi que toute communication de fausses informations dans le but d'obtenir un médicament de manière abusive.</p>
+  <p>Asael Pharma se réserve le droit de mettre fin à tout échange ou de refuser de donner suite à une demande en cas de comportement contraire aux présentes conditions.</p>
+</section>
+
+<section class="legal-section reveal" id="liens-externes">
+  <h2><span class="mask"><span class="mask-inner">Liens externes</span></span></h2>
+  <p>Ce site contient des liens vers des services tiers, notamment WhatsApp, ainsi que des références aux services de paiement Wave et Orange Money. Ces services sont exploités par des sociétés indépendantes d'Asael Pharma, qui n'exerce aucun contrôle sur leur fonctionnement, leur disponibilité ou leurs propres conditions d'utilisation.</p>
+  <p>Nous vous invitons à consulter les conditions et politiques propres à chacun de ces services avant de les utiliser.</p>
+</section>
+
+<section class="legal-section reveal" id="droit-applicable">
+  <h2><span class="mask"><span class="mask-inner">Droit applicable et juridiction</span></span></h2>
+  <p>Les présentes conditions d'utilisation sont régies par le droit ivoirien. En cas de différend relatif à leur interprétation ou à leur exécution, les parties s'efforceront de trouver une solution amiable avant toute action judiciaire.</p>
+  <p>À défaut de résolution amiable, tout litige sera porté devant les juridictions compétentes d'Abidjan, Côte d'Ivoire.</p>
+</section>
+
+<section class="legal-section reveal" id="modification-cgu">
+  <h2><span class="mask"><span class="mask-inner">Modification des conditions</span></span></h2>
+  <p>Asael Pharma se réserve le droit de modifier les présentes conditions d'utilisation à tout moment, notamment pour tenir compte de l'évolution de son activité, de ses services ou de la réglementation applicable. Les conditions applicables sont celles en vigueur au moment de votre demande auprès d'Asael Pharma.</p>
+  <p>Nous vous invitons à consulter régulièrement cette page afin de prendre connaissance des éventuelles mises à jour.</p>
+</section>
+
+<section class="legal-section reveal" id="contact-cgu">
+  <h2><span class="mask"><span class="mask-inner">Nous contacter</span></span></h2>
+  <p>Pour toute question relative aux présentes conditions d'utilisation, vous pouvez joindre Asael Pharma :</p>
+  <ul>
+    <li>Par téléphone ou WhatsApp : 07 57 68 75 79 ;</li>
+    <li>Par courrier électronique : richardtofe17@gmail.com.</li>
+  </ul>
+  <div class="legal-note">Ces conditions d'utilisation ont été rédigées avec sérieux, en cohérence avec le droit ivoirien applicable. Elles ne remplacent pas un conseil juridique personnalisé ; Asael Pharma recommande, en particulier compte tenu de la nature spécialisée des médicaments proposés, de faire réviser ce document par un professionnel du droit avant toute exploitation commerciale à grande échelle.</div>
+</section>
+
+      </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="f-logo">Asael Pharma</div>
+        <p class="f-tag">Medicaments d'oncologie importes depuis l'Inde, disponibles a Abidjan, jour et nuit.</p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram" title="Bientot disponible">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" title="Bientot disponible">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5H14c-2.2 0-4 1.8-4 4v2H8v3.5h2V21h3.5v-6.5H16l.5-3.5h-3V9c0-.3.2-.5.5-.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="f-contact">
+        <div class="f-label">Appelez ou ecrivez</div>
+        <a href="tel:+2250757687579">07 57 68 75 79</a>
+        <a href="mailto:richardtofe17@gmail.com" class="f-email">richardtofe17@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Asael Pharma.</span>
+      <span class="footer-legal-links">
+        <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="politique-confidentialite.html">Politique de confidentialite</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

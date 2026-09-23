@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de confidentialité — Asael Pharma</title>
+<meta name="description" content="Politique de confidentialité d'Asael Pharma : collecte, usage et protection de vos données personnelles, conformément à la loi ivoirienne n°2013-450.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<a href="https://wa.me/2250757687579" class="wa-float wa-link" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <span class="wa-float-pulse"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.4-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<div class="loader" id="loader">
+  <div class="loader-frame-top"></div>
+  <div class="loader-frame-bottom"></div>
+  <div class="loader-panel loader-panel-left">
+    <span class="loader-glass-shine"></span>
+    <span class="loader-handle"></span>
+  </div>
+  <div class="loader-panel loader-panel-right">
+    <span class="loader-glass-shine"></span>
+    <span class="loader-handle"></span>
+  </div>
+  <div class="loader-center">
+    <svg class="loader-icon" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M160 20h80a12 12 0 0112 12v96h96a12 12 0 0112 12v80a12 12 0 01-12 12h-96v96a12 12 0 01-12 12h-80a12 12 0 01-12-12v-96H52a12 12 0 01-12-12v-80a12 12 0 0112-12h96V32a12 12 0 0112-12z" fill="none" stroke="currentColor" stroke-width="11"></path>
+      <path d="M300 130c10 55-25 100-80 112-40 9-78-4-96-30 22-40 60-58 96-58 8-24 30-24 80-24z" fill="currentColor"></path>
+      <path d="M124 212c18-34 55-50 96-52" fill="none" stroke="#14140D" stroke-width="8" stroke-linecap="round"></path>
+    </svg>
+    <span class="loader-logo">Asael Pharma</span>
+    <span class="loader-line"></span>
+  </div>
+  <div class="loader-flash"></div>
+</div>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Asael Pharma</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+    </ul>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 0110.2 4.7 8.5 8.5 0 1020 14.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="legal-page">
+  <svg class="legal-watermark" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M160 20h80a12 12 0 0112 12v96h96a12 12 0 0112 12v80a12 12 0 01-12 12h-96v96a12 12 0 01-12 12h-80a12 12 0 01-12-12v-96H52a12 12 0 01-12-12v-80a12 12 0 0112-12h96V32a12 12 0 0112-12z" fill="none" stroke="currentColor" stroke-width="10"></path>
+  <path d="M300 130c10 55-25 100-80 112-40 9-78-4-96-30 22-40 60-58 96-58 8-24 30-24 80-24z" fill="currentColor"></path>
+  <path d="M124 212c18-34 55-50 96-52" fill="none" stroke="var(--cream)" stroke-width="7" stroke-linecap="round"></path>
+</svg>
+
+  <section class="legal-hero">
+    <div class="wrap">
+      <a href="index.html" class="legal-back">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Retour a l'accueil
+      </a>
+      <div class="legal-updated"><span class="dot"></span>Derniere mise a jour : Septembre 2026</div>
+      <h1><span class="mask"><span class="mask-inner">Politique de confidentialité</span></span></h1>
+      <p class="legal-intro reveal-fade">Comment Asael Pharma collecte, utilise et protège vos données personnelles — expliqué clairement, sans jargon inutile.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="legal-layout">
+      <nav class="legal-toc">
+          <a href="#preambule">Préambule</a>
+          <a href="#responsable">Responsable du traitement</a>
+          <a href="#donnees-collectees">Données collectées</a>
+          <a href="#donnees-sante">Données de santé</a>
+          <a href="#finalites">Finalités</a>
+          <a href="#base-legale">Base légale</a>
+          <a href="#destinataires">Destinataires</a>
+          <a href="#transferts">Transferts et prestataires</a>
+          <a href="#conservation">Durée de conservation</a>
+          <a href="#securite">Sécurité</a>
+          <a href="#droits">Vos droits</a>
+          <a href="#cookies">Cookies</a>
+          <a href="#mineurs">Mineurs</a>
+          <a href="#modifications">Modifications</a>
+          <a href="#contact-donnees">Nous contacter</a>
+      </nav>
+      <article class="legal-content">
+
+<section class="legal-section reveal" id="preambule">
+  <h2><span class="mask"><span class="mask-inner">Préambule</span></span></h2>
+  <p>Asael Pharma accorde une importance particulière à la protection de la vie privée et des données personnelles des personnes qui la contactent, notamment parce que les échanges portent souvent sur des besoins de santé sensibles. La présente politique de confidentialité a pour objet de vous informer, de façon claire et complète, sur la manière dont vos données personnelles sont collectées, utilisées, conservées et protégées lorsque vous entrez en contact avec Asael Pharma, que ce soit par téléphone, par WhatsApp, par courrier électronique ou en consultant ce site.</p>
+  <p>Cette politique s'inscrit dans le respect de la loi n°2013-450 du 19 juin 2013 relative à la protection des données à caractère personnel en Côte d'Ivoire, ainsi que des textes qui en découlent. Cette loi est appliquée par l'Autorité de Régulation des Télécommunications/TIC de Côte d'Ivoire (ARTCI), désignée comme autorité de protection des données personnelles sur le territoire ivoirien.</p>
+  <p>En sollicitant Asael Pharma, vous reconnaissez avoir pris connaissance de cette politique. Si une disposition venait à ne pas vous convenir, nous vous invitons à nous en faire part avant tout échange impliquant la communication de données personnelles.</p>
+</section>
+
+<section class="legal-section reveal" id="responsable">
+  <h2><span class="mask"><span class="mask-inner">Responsable du traitement</span></span></h2>
+  <p>Le responsable du traitement des données personnelles collectées dans le cadre de l'activité d'Asael Pharma est l'exploitant du service Asael Pharma, basé à Abidjan, Côte d'Ivoire. C'est cette personne qui détermine les finalités et les moyens du traitement de vos données, au sens de la loi n°2013-450.</p>
+  <p>Pour toute question relative à vos données personnelles, vous pouvez joindre le responsable du traitement par téléphone ou WhatsApp au 07 57 68 75 79, ou par courrier électronique à l'adresse richardtofe17@gmail.com. Ces coordonnées figurent également dans la section « Nous contacter » de la présente politique.</p>
+</section>
+
+<section class="legal-section reveal" id="donnees-collectees">
+  <h2><span class="mask"><span class="mask-inner">Données que nous collectons</span></span></h2>
+  <p>Asael Pharma ne dispose pas d'un formulaire de commande en ligne. Les données personnelles sont donc principalement collectées de manière directe, lors de vos échanges avec nous par téléphone, par WhatsApp ou par courrier électronique. Selon la nature de votre demande, les catégories de données suivantes peuvent être recueillies :</p>
+  <ul>
+    <li>Votre nom ou prénom, lorsque vous le communiquez volontairement au cours de l'échange ;</li>
+    <li>Votre numéro de téléphone, notamment via WhatsApp, qui constitue le principal moyen de contact ;</li>
+    <li>Votre adresse ou votre commune de résidence, lorsque celle-ci est nécessaire pour organiser une livraison ;</li>
+    <li>Les informations que vous choisissez de partager concernant le médicament recherché, y compris, le cas échéant, des informations relatives à votre état de santé ou à celui d'un proche ;</li>
+    <li>L'historique de vos échanges avec Asael Pharma, dans la mesure où WhatsApp conserve les conversations sur l'appareil utilisé ;</li>
+    <li>Les informations liées au paiement, telles que la confirmation d'une transaction Wave ou Orange Money, à l'exclusion de tout mot de passe ou code confidentiel, qui ne sont jamais demandés par Asael Pharma.</li>
+  </ul>
+  <p>Nous ne collectons pas de données que vous ne nous auriez pas vous-même communiquées, et nous ne procédons à aucune collecte automatisée de données de navigation à caractère personnel sur ce site, en dehors de ce qui est mentionné à la section « Cookies et traceurs ».</p>
+</section>
+
+<section class="legal-section reveal" id="donnees-sante">
+  <h2><span class="mask"><span class="mask-inner">Données de santé : une vigilance renforcée</span></span></h2>
+  <p>Compte tenu de la nature de l'activité d'Asael Pharma, centrée sur des médicaments d'oncologie, certains échanges peuvent conduire à la communication d'informations relatives à votre état de santé ou à celui d'une personne pour laquelle vous sollicitez un médicament. La loi n°2013-450 range les données de santé parmi les données dites sensibles, qui bénéficient d'une protection renforcée.</p>
+  <p>Ces informations ne sont utilisées que dans la stricte mesure nécessaire pour comprendre votre besoin, vous orienter vers le médicament recherché et organiser sa remise. Elles ne sont ni publiées, ni cédées à des fins commerciales, ni utilisées à des fins de prospection. En nous communiquant de telles informations, vous consentez expressément à leur traitement pour ces seules finalités.</p>
+  <p>Vous n'êtes jamais tenu de justifier médicalement votre demande, ni de fournir plus d'informations que ce que vous jugez nécessaire pour être bien orienté.</p>
+</section>
+
+<section class="legal-section reveal" id="finalites">
+  <h2><span class="mask"><span class="mask-inner">Pourquoi nous utilisons vos données</span></span></h2>
+  <p>Vos données personnelles sont utilisées exclusivement pour les finalités suivantes :</p>
+  <ul>
+    <li>Comprendre votre besoin et vous conseiller sur le médicament correspondant ;</li>
+    <li>Organiser la remise en main propre ou la livraison du médicament demandé ;</li>
+    <li>Confirmer un paiement effectué par Wave ou Orange Money ;</li>
+    <li>Assurer un suivi de votre demande en cas de question ou de réclamation ultérieure ;</li>
+    <li>Respecter les obligations légales ou réglementaires qui pourraient s'imposer à Asael Pharma.</li>
+  </ul>
+  <p>Vos données ne sont en aucun cas utilisées à des fins de revente à des tiers, de profilage commercial ou de prospection publicitaire non sollicitée.</p>
+</section>
+
+<section class="legal-section reveal" id="base-legale">
+  <h2><span class="mask"><span class="mask-inner">Base légale du traitement</span></span></h2>
+  <p>Le traitement de vos données personnelles repose principalement sur votre consentement, exprimé librement lorsque vous prenez contact avec Asael Pharma pour formuler une demande. S'agissant plus particulièrement des données de santé évoquées à la section précédente, ce consentement doit être exprès : en nous communiquant volontairement de telles informations dans le cadre de votre demande, vous consentez à leur traitement pour les finalités décrites dans la présente politique.</p>
+  <p>Le traitement peut également reposer, selon les cas, sur l'exécution des démarches nécessaires à la remise du médicament que vous avez sollicité, ou sur le respect d'obligations légales auxquelles Asael Pharma pourrait être soumise.</p>
+</section>
+
+<section class="legal-section reveal" id="destinataires">
+  <h2><span class="mask"><span class="mask-inner">Qui a accès à vos données</span></span></h2>
+  <p>Vos données personnelles ne sont accessibles qu'aux personnes directement impliquées dans le traitement de votre demande au sein d'Asael Pharma, à savoir la personne qui vous répond et, lorsque cela est nécessaire à la livraison, la ou les personnes chargées d'acheminer votre commande jusqu'à vous.</p>
+  <p>Ces personnes sont tenues à une obligation de confidentialité stricte concernant toute information relative à votre identité, à votre localisation ou à votre demande. Aucune donnée n'est partagée avec des tiers à des fins commerciales.</p>
+</section>
+
+<section class="legal-section reveal" id="transferts">
+  <h2><span class="mask"><span class="mask-inner">Transferts de données et prestataires tiers</span></span></h2>
+  <p>Les échanges menés par WhatsApp transitent par l'infrastructure technique de Meta Platforms, société qui exploite ce service de messagerie. À ce titre, certaines données peuvent être traitées ou stockées en dehors du territoire ivoirien, dans le cadre du fonctionnement normal de l'application WhatsApp et conformément à sa propre politique de confidentialité, que nous vous invitons à consulter.</p>
+  <p>De la même manière, lorsque vous réglez une commande via Wave ou Orange Money, les données nécessaires à la transaction sont traitées par ces prestataires de paiement, conformément à leurs propres conditions et politiques de confidentialité. Asael Pharma n'a accès qu'à la confirmation de paiement et non aux données bancaires ou aux identifiants de votre compte Wave ou Orange Money.</p>
+  <p>Asael Pharma s'assure, dans la mesure de ses moyens, que les prestataires auxquels elle a recours présentent des garanties raisonnables de sécurité et de confidentialité.</p>
+</section>
+
+<section class="legal-section reveal" id="conservation">
+  <h2><span class="mask"><span class="mask-inner">Durée de conservation</span></span></h2>
+  <p>Vos données personnelles sont conservées pendant la durée nécessaire au traitement de votre demande, puis pendant une durée raisonnable permettant de répondre à d'éventuelles questions de suivi ou réclamations. Les échanges WhatsApp sont conservés selon les paramètres de l'application installée sur l'appareil utilisé par Asael Pharma, et peuvent être supprimés périodiquement.</p>
+  <p>Au-delà de ces durées, vos données ne sont plus utilisées activement. Vous pouvez à tout moment demander la suppression des informations vous concernant, dans les conditions décrites à la section « Vos droits ».</p>
+</section>
+
+<section class="legal-section reveal" id="securite">
+  <h2><span class="mask"><span class="mask-inner">Sécurité des données</span></span></h2>
+  <p>Asael Pharma met en œuvre des mesures raisonnables pour protéger la confidentialité des informations qui lui sont communiquées : discrétion des échanges, accès restreint aux informations relatives aux commandes, et vigilance quant aux personnes impliquées dans la livraison.</p>
+  <p>Aucun système de communication, y compris WhatsApp ou les réseaux téléphoniques, n'est totalement exempt de risques. Asael Pharma s'engage cependant à agir avec sérieux et discrétion à chaque étape, du premier contact jusqu'à la remise du médicament.</p>
+</section>
+
+<section class="legal-section reveal" id="droits">
+  <h2><span class="mask"><span class="mask-inner">Vos droits</span></span></h2>
+  <p>Conformément à la loi n°2013-450 relative à la protection des données à caractère personnel, vous disposez, sur les données vous concernant, des droits suivants :</p>
+  <ul>
+    <li><strong>Droit d'accès :</strong> obtenir la confirmation que des données vous concernant sont traitées, et en obtenir une copie ;</li>
+    <li><strong>Droit de rectification :</strong> demander la correction de données inexactes ou incomplètes ;</li>
+    <li><strong>Droit d'effacement :</strong> demander la suppression de vos données lorsque leur conservation n'est plus nécessaire ;</li>
+    <li><strong>Droit d'opposition :</strong> vous opposer, pour des motifs légitimes, à un traitement de vos données ;</li>
+    <li><strong>Droit de retrait du consentement :</strong> retirer à tout moment un consentement précédemment donné, sans que cela remette en cause la licéité des traitements déjà effectués.</li>
+  </ul>
+  <p>Pour exercer l'un de ces droits, il vous suffit de nous contacter par téléphone, WhatsApp ou courrier électronique, avec les coordonnées indiquées à la fin de cette politique. Nous nous efforçons de répondre dans un délai raisonnable.</p>
+  <p>Si vous estimez que vos droits ne sont pas respectés, vous avez également la possibilité d'adresser une réclamation à l'Autorité de Régulation des Télécommunications/TIC de Côte d'Ivoire (ARTCI), autorité compétente en matière de protection des données personnelles en Côte d'Ivoire.</p>
+</section>
+
+<section class="legal-section reveal" id="cookies">
+  <h2><span class="mask"><span class="mask-inner">Cookies et traceurs</span></span></h2>
+  <p>Ce site n'utilise pas de cookies publicitaires, ni de traceurs à des fins d'analyse du comportement des visiteurs. La seule information technique conservée localement, dans le navigateur de votre appareil, concerne votre préférence d'affichage entre le thème clair et le thème sombre du site. Cette information reste stockée uniquement sur votre appareil, n'est jamais transmise à Asael Pharma, et peut être effacée à tout moment en vidant les données de votre navigateur.</p>
+  <p>Si Asael Pharma venait à intégrer, à l'avenir, des outils de mesure d'audience ou des cookies à d'autres fins, la présente politique serait mise à jour en conséquence et une information adaptée vous serait apportée.</p>
+</section>
+
+<section class="legal-section reveal" id="mineurs">
+  <h2><span class="mask"><span class="mask-inner">Protection des mineurs</span></span></h2>
+  <p>Les médicaments proposés par Asael Pharma s'adressent à un usage encadré et responsable. Ce site et les services d'Asael Pharma ne sont pas destinés à être utilisés directement par des personnes mineures sans l'accompagnement d'un parent, d'un tuteur légal ou d'un adulte responsable.</p>
+  <p>Si vous avez connaissance qu'un mineur nous a communiqué des données personnelles sans un tel accompagnement, nous vous invitons à nous contacter afin que les mesures appropriées puissent être prises.</p>
+</section>
+
+<section class="legal-section reveal" id="modifications">
+  <h2><span class="mask"><span class="mask-inner">Modifications de cette politique</span></span></h2>
+  <p>Asael Pharma peut être amenée à modifier la présente politique de confidentialité, notamment pour tenir compte de l'évolution de son activité, de ses outils, ou de la réglementation applicable en Côte d'Ivoire. Toute modification substantielle fera l'objet d'une mise à jour de la date figurant en haut de cette page.</p>
+  <p>Nous vous invitons à consulter cette page périodiquement afin de rester informé de la manière dont vos données personnelles sont protégées.</p>
+</section>
+
+<section class="legal-section reveal" id="contact-donnees">
+  <h2><span class="mask"><span class="mask-inner">Nous contacter</span></span></h2>
+  <p>Pour toute question relative à cette politique de confidentialité, à vos données personnelles, ou pour exercer l'un des droits décrits ci-dessus, vous pouvez joindre Asael Pharma :</p>
+  <ul>
+    <li>Par téléphone ou WhatsApp : 07 57 68 75 79 ;</li>
+    <li>Par courrier électronique : richardtofe17@gmail.com.</li>
+  </ul>
+  <div class="legal-note">Cette politique de confidentialité a été rédigée avec sérieux et en cohérence avec la loi n°2013-450 du 19 juin 2013 relative à la protection des données à caractère personnel en Côte d'Ivoire. Elle ne remplace pas un conseil juridique personnalisé, et Asael Pharma reste ouverte à toute demande de clarification.</div>
+</section>
+
+      </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="f-logo">Asael Pharma</div>
+        <p class="f-tag">Medicaments d'oncologie importes depuis l'Inde, disponibles a Abidjan, jour et nuit.</p>
+        <div class="f-social">
+          <a href="#" aria-label="Instagram" title="Bientot disponible">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" title="Bientot disponible">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5H14c-2.2 0-4 1.8-4 4v2H8v3.5h2V21h3.5v-6.5H16l.5-3.5h-3V9c0-.3.2-.5.5-.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="f-contact">
+        <div class="f-label">Appelez ou ecrivez</div>
+        <a href="tel:+2250757687579">07 57 68 75 79</a>
+        <a href="mailto:richardtofe17@gmail.com" class="f-email">richardtofe17@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Asael Pharma.</span>
+      <span class="footer-legal-links">
+        <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="politique-confidentialite.html">Politique de confidentialite</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
